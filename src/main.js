@@ -3,7 +3,7 @@ import mapboxgl from "mapbox-gl";
 
 mapboxgl.accessToken = "pk.eyJ1IjoicmFmbnVzcyIsImEiOiIzMVE1dnc0In0.3FNMKIlQ_afYktqki-6m0g";
 
-const match = window.location.pathname.match(/@(-?\d+\.\d+),(-?\d+\.\d+),(\d+)z/);
+const match = window.location.search.match(/@(-?\d+\.\d+),(-?\d+\.\d+),(\d+)z/);
 const center = match ? [parseFloat(match[2]), parseFloat(match[1])] : [20, 0];
 const zoom = match ? parseInt(match[3], 10) : 2;
 
@@ -16,11 +16,10 @@ const map = new mapboxgl.Map({
 
 map.on("moveend", () => {
   const { lng, lat } = map.getCenter();
-  window.history.replaceState(
-    null,
-    "",
-    `@${lat.toFixed(6)},${lng.toFixed(6)},${Math.round(map.getZoom())}z`
-  );
+  const zoom = Math.round(map.getZoom());
+  const newParams = `?@${lat.toFixed(6)},${lng.toFixed(6)},${zoom}z`;
+
+  window.history.replaceState(null, "", newParams);
 });
 
 map.on("load", async () => {
