@@ -3,18 +3,29 @@ import mapboxgl from "mapbox-gl";
 
 mapboxgl.accessToken = "pk.eyJ1IjoicmFmbnVzcyIsImEiOiIzMVE1dnc0In0.3FNMKIlQ_afYktqki-6m0g";
 
+const match = window.location.pathname.match(/@(-?\d+\.\d+),(-?\d+\.\d+),(\d+)z/);
+const center = match ? [parseFloat(match[2]), parseFloat(match[1])] : [20, 0];
+const zoom = match ? parseInt(match[3], 10) : 2;
+
 const map = new mapboxgl.Map({
   container: "map",
   style: "mapbox://styles/mapbox/dark-v11",
-  center: [20, 0],
-  zoom: 2,
+  center,
+  zoom,
+});
+
+map.on("moveend", () => {
+  const { lng, lat } = map.getCenter();
+  window.history.replaceState(
+    null,
+    "",
+    `@${lat.toFixed(6)},${lng.toFixed(6)},${Math.round(map.getZoom())}z`
+  );
 });
 
 map.on("load", async () => {
   const response = await fetch("./ebird_loc.geojson"); // Fetch from public folder
   const geojsonData = await response.json();
-
-  console.log(geojsonData.features[5]);
 
   map.addSource("loc", {
     type: "geojson",
