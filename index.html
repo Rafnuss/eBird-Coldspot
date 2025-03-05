@@ -6,10 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>eBird Coldspot</title>
     <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/v3.9.4/mapbox-gl.css" />
-    <script type="module" crossorigin src="/eBird-Coldspot/assets/index-CMiu9RJJ.js"></script>
-    <link rel="stylesheet" crossorigin href="/eBird-Coldspot/assets/index-CsgJY5Sa.css">
+    <script type="module" crossorigin src="/eBird-Coldspot/assets/index-4Vl6HIGF.js"></script>
+    <link rel="stylesheet" crossorigin href="/eBird-Coldspot/assets/index-Dkohw9Gt.css">
   </head>
   <body>
     <div id="map"></div>
+    <div class="map-overlay top">
+      <div class="select">
+        <select id="layer-selector" onchange="updateLayer()">
+          <option value="heatmap">Heatmap</option>
+          <option value="pentad_checklist">Pentad Checklist</option>
+          <option value="pentad_duration">Pentad Duration</option>
+        </select>
+      </div>
+    </div>
   </body>
 </html>
