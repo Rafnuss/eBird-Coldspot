@@ -12,6 +12,7 @@
     "vite": "^6.1.0"
   },
   "dependencies": {
+    "bulma": "^1.0.3",
     "mapbox-gl": "^3.9.4"
   }
 }

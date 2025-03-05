@@ -9,6 +9,15 @@
   </head>
   <body>
     <div id="map"></div>
+    <div class="map-overlay top">
+      <div class="select">
+        <select id="layer-selector" onchange="updateLayer()">
+          <option value="heatmap">Heatmap</option>
+          <option value="pentad_checklist">Pentad Checklist</option>
+          <option value="pentad_duration">Pentad Duration</option>
+        </select>
+      </div>
+    </div>
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>

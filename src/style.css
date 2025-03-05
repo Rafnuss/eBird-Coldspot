@@ -1,3 +1,5 @@
+@import "../node_modules/bulma/css/bulma.min.css";
+
 body {
   margin: 0;
   padding: 0;
@@ -7,4 +9,18 @@ body {
   top: 0;
   bottom: 0;
   width: 100%;
+}
+.map-overlay {
+  position: absolute;
+  width: 25%;
+  top: 0;
+  left: 0;
+  padding: 10px;
+}
+.mapboxgl-popup-content {
+  background-color: #2c303a;
+  color: #fcfeff;
+}
+.mapboxgl-popup-tip {
+  border-top-color: #2c303a !important;
 }
